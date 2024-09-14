@@ -2,8 +2,9 @@
 title: Reproducible slides with Quarto and continuous deployment via GitHub actions
 subtitle: Demonstration slides
 format: 
-  clean-revealjs:
-    self-contained: true
+  revealjs: default
+  # clean-revealjs:
+  #   self-contained: true
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
@@ -16,6 +17,40 @@ date: last-modified
 bibliography: references.bib
 ---
 
+# Publishing slides
+
+## Setting-up `gh-pages` branch
+
+You can do this with a single quarto command:
+
+``` sh
+quarto publish gh-pages
+```
+
+Which leads to the following text and eventually auto-opens the deployed webiste!
+
+![](images/paste-4.png)
+
+## The website
+
+The previous command creates a `gh-pages` branch with the slides in the `docs` folder. This is then automatically deployed to GitHub Pages, and the website is opened in your browser when ready:
+
+![](images/paste-5.png)
+
+How awesome is that?
+
+### 🤯🤯🤯
+
+
+## Debugging
+
+Source of `quarto publish gh-pages` hint: [Error message from GitHub Actions](https://github.com/Robinlovelace/reproducible-slides-repo-template/actions/runs/10860601182/job/30141397336#step:4:34) when trying to publish slides to GitHub Pages:
+
+```         
+ERROR: Unable to publish to GitHub Pages (the remote origin does not have a branch named "gh-pages". Use first `quarto publish gh-pages` locally to initialize the remote repository for publishing.)
+```
+
+![](images/paste-3.png)
 
 # Adding citations {background-color="#40666e"}
 
@@ -40,7 +75,7 @@ Alt+Shift+Z
 
 # Code chunks
 
-```r
+``` r
 #| include: false
 library(tibble)
 ```
