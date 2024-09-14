@@ -1,11 +1,9 @@
 ---
-title: Future-proof transport planning
+title: Reproducible slides with Quarto and continuous deployment via GitHub actions
 ---
 
-The materials here support a talk at the [Mobile Tartu](https://mobiletartu.ut.ee/) conference 2024.
+The materials here support a talk at the [Spatial Data Science across Languages (SDSL)](https://spatial-data-science.github.io/2024/) conference 2024.
 
-See the [slides](slides) in the link.
+See the [slides here](slides) and in the dropdown menu above.
 
-The talk advocates reproducible research with open source software as a strategy for future-proof transport planning.
-Practicing what I preach, the slides are fully reproducible.
-See the source code at [github.com/robinlovelace](https://github.com/Robinlovelace/tartu24).
+See the source code at [github.com/robinlovelace](https://github.com/Robinlovelace/reproducible-slides-repo-template).
