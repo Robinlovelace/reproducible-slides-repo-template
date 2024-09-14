@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "slides.html#setting-up-gh-pages-branch",
+    "href": "slides.html#setting-up-gh-pages-branch",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "Setting-up gh-pages branch",
+    "text": "Setting-up gh-pages branch\nYou can do this with a single quarto command:\nquarto publish gh-pages\nSource: Error message from GitHub Actions when trying to publish slides to GitHub Pages:\nERROR: Unable to publish to GitHub Pages (the remote origin does not have a branch named \"gh-pages\". Use first `quarto publish gh-pages` locally to initialize the remote repository for publishing.)"
+  },
+  {
+    "objectID": "slides.html#with-the-quarto-extension",
+    "href": "slides.html#with-the-quarto-extension",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "With the Quarto extension",
+    "text": "With the Quarto extension\n\nYou need to be in Visual Editor mode (Ctrl+Shift+F4)\nThen it’s Ctrl+Shift+F8\n\n\nCreates citations like this: (Peng 2011)"
+  },
+  {
+    "objectID": "slides.html#with-citation-picker-for-zotero-extension",
+    "href": "slides.html#with-citation-picker-for-zotero-extension",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "With “Citation Picker for Zotero” extension",
+    "text": "With “Citation Picker for Zotero” extension\n\nIssue with this approach: doesn’t generate the .bib file\n\n\n(baumer_markdown_2014?)\nAlt+Shift+Z"
+  },
+  {
+    "objectID": "paper.html",
+    "href": "paper.html",
+    "title": "",
+    "section": "",
+    "text": "This is a placeholder for a paper."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "",
+    "text": "The materials here support a talk at the Spatial Data Science across Languages (SDSL) conference 2024.\nSee the slides here and in the dropdown menu above.\nSee the source code at github.com/robinlovelace."
+  }
+]
