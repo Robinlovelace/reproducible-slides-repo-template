@@ -1,0 +1,18 @@
+project:
+  type: website
+  render:
+    - index.qmd 
+    - slides.qmd
+    - paper.qmd
+
+website:
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Slides"
+        href: slides.qmd
+      # - text: "Paper"
+      #   href: paper.qmd 

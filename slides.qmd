@@ -1,0 +1,489 @@
+---
+title: Reproducible research and open tools for future-proof transport planning
+subtitle: Mobile Tartu 2024
+format: 
+  clean-revealjs:
+    self-contained: true
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Robin Lovelace
+    orcid: 0000-0001-5679-6536
+    email: r.lovelace@leeds.ac.uk
+    affiliations: University of Leeds, Active Travel England
+date: last-modified
+bibliography: refs_tartu.bib
+---
+
+```{r}
+#| include: false
+library(tibble)
+```
+
+# Introduction {background-color="#40666e"}
+
+## About me and my work
+
+::: columns
+::: {.column width="40%"}
+::: incremental
+-   Associate Professor of Transport Data Science
+-   Work with government
+-   Focus on impact
+-   Software developer and data scientist
+-   New methods for more reproducible, data-driven and participatory transport planning
+:::
+:::
+
+::: {.column width="60%"}
+::: {layout="[[1,2], [1]]"}
+![](https://r.geocompx.org/images/cover.png)
+
+![](https://github.com/npct/pct-team/blob/master/figures/front-page-leeds-pct-demo.png?raw=true)
+
+![](images/paste-17.png)
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Contents
+
+::: incremental
+-   Definitions: what is reproducible research and future proof transport planning?
+-   Reproducible research and open tools
+-   Future-proof transport planning
+:::
+
+## Definitions
+
+> a tool is a ...
+> piece of software or online service; a model ...
+> is method or process that is expounded in theoretical terms; software is ...
+> instructions that underlies digital tools @lovelace2021
+
+**Reproducible research**: Other people can re-generate your results
+
+. . .
+
+**Open source software**: Software that is free to use and modify
+
+. . .
+
+**Open access tools**: Web applications for transport planning that are based on open source software, that anyone can use
+
+. . .
+
+**Open access data**: Data that is freely available to use and share
+
+. . .
+
+**Future-proof** work that is likely to be useful in the medium-term future
+
+<!-- (10 years+), regardless of (political, economic, technological) changes -->
+
+## (I-)Reproducibility
+
+Reproducibility is a continuous variable [@peng2011]
+
+![](images/paste-18.png)
+
+# Reproducible research
+
+## Why make your research (more) reproducible?
+
+::: columns
+::: {.column width="80%"}
+![](images/paste-36.png)
+
+Source: @raff2023
+:::
+
+::: {.column width="20%"}
+::: incremental
+-   Scientific rigour
+-   Benefits to your future self
+-   Benefits to others
+-   Huge increase in potential for impact
+:::
+:::
+:::
+
+## Why *not* make your research reproducible?
+
+::: {.column width="20%"}
+![](images/paste-28.png)
+:::
+
+::: column
+-   Time
+
+-   Know-how
+
+-   Lack of permission
+
+-   Software is not open
+
+-   Data is not open access
+
+-   Someone might use it in unethical ways
+
+-   Someone might "steal" the work
+:::
+
+## Example of fully reproducible research
+
+![](images/paste-23.png)
+
+@lovelace2022
+
+## Reproducibility and generalisability
+
+![](images/paste-24.png)
+
+Illustration of the ClockBoard zoning system used to visualize a geographically dependendent phenomena: air quality, measured in mass of PM10 particles, measured in micrograms per cubic meter, from the London Atmospheric Emissions Inventory (LAEI).
+The facets show the data in spatial grid available from the LAEI, facet Am and aggregated to London boroughs B, to ClockBoard zones covering all the input data shown in C, and ClockBoard zones clipped by the administrative boundary of Greater London in D.
+
+## Application: road traffic casualties
+
+![](images/paste-26.png)
+
+![](images/paste-27.png)
+
+## International comparisons
+
+::: columns
+::: {.column width="70%"}
+![](images/paste-25.png)
+:::
+
+::: {.column width="30%"}
+**Premise**: A key reason for reproducibility is *generalisability*.
+:::
+:::
+
+# Open source software and open access tools
+
+## Case study: mobile telephone data in Spain
+
+![](images/paste-1.png)
+
+## Don't reinvent the wheel
+
+::: columns
+::: {.column width="40%"}
+### Before
+
+```{r}
+#| eval: false
+#| echo: true
+options(timeout = 600) # 10 minutes
+u1 = "https://movilidad-opendata.mitma.es/estudios_basicos/por-distritos/viajes/ficheros-diarios/2024-03/20240301_Viajes_distritos.csv.gz"
+f1 = basename(u1)
+if (!file.exists(f1)) {
+  download.file(u1, f1)
+}
+drv = duckdb::duckdb("daily.duckdb")
+con = DBI::dbConnect(drv)
+od1 = duckdb::tbl_file(con, f1)
+```
+
+Credit: [Egor Kotov](https://github.com/Robinlovelace/spanishoddata/blob/main/draft-code/001-convert-to-clean-data.r)
+:::
+
+::: {.column width="60%"}
+```{r}
+#| eval: false
+#| echo: true
+remotes::install_github("Robinlovelace/spanishoddata")
+od_multi_list = get_od(date_regex = "2024030[1-7]")
+# ...
+n_per_hour |>
+  ggplot(aes(x = Time, y = Trips)) +
+  geom_line(aes(colour = Day)) +
+  labs(title = "Number of trips per hour over 7 days")
+```
+
+![](images/paste-2.png)
+:::
+:::
+
+## Re-using existing tools
+
+::: columns
+::: {.column width="30%"}
+```{r}
+#| eval: false
+#| echo: true
+# Process the data
+od_large = od_database |>
+  group_by(origen, destino) |>
+  summarise(Trips = sum(viajes), .groups = "drop") |>
+  filter(Trips > 500) |>
+  collect() |>
+  arrange(desc(Trips))
+# ℹ 37,013 more rows
+# Convert to geo with {od} package:
+od_large_interzonal_sf = od::od_to_sf(
+  od_large_interzonal,
+  z = distritos_wgs84
+)
+od_large_interzonal_sf |>
+  ggplot() +
+  geom_sf(aes(size = Trips), colour = "red") +
+  theme_void()
+```
+:::
+
+::: {.column width="70%"}
+![](images/paste-4.png)
+:::
+:::
+
+## Zooming in
+
+```{r}
+#| eval: false
+#| echo: true
+distritos = get_zones(type = "distritos")
+distritos_wgs84 = sf::st_transform(distritos, 4326)
+salamanca_zones = zonebuilder::zb_zone("Salamanca")
+distritos_salamanca = distritos_wgs84[salamanca_zones, ]
+plot(distritos_salamanca)
+```
+
+![](https://github.com/Robinlovelace/spanishoddata/raw/main/man/figures/README-salamanca-zones-1.png)
+
+## Subsetting from the database
+
+::: columns
+::: {.column width="30%"}
+```{r}
+#| eval: false
+#| echo: true
+od_salamanca = od_database |>
+  filter(origen %in% ids_salamanca) |>
+  filter(destino %in% ids_salamanca) |>
+  collect()
+  group_by(origen, destino) |>
+  summarise(Trips = sum(viajes)) |>
+  arrange(Trips)
+od_salamanca_sf = od::od_to_sf(
+  od_salamanca,
+  z = distritos_salamanca
+)
+od_salamanca_sf |>
+  filter(origen != destino) |>
+  ggplot() +
+  geom_sf(aes(colour = Trips), size = 1) +
+  scale_colour_viridis_c() +
+  theme_void()
+```
+:::
+
+::: {.column width="70%"}
+![](https://github.com/Robinlovelace/spanishoddata/raw/main/man/figures/README-salamanca-plot-1.png)
+:::
+:::
+
+## Spatial disaggregation
+
+::: columns
+::: {.column width="30%"}
+```{r}
+#| eval: false
+#| echo: true
+od_jittered = odjitter::jitter(
+  od_salamanca_sf,
+  zones = distritos_salamanca,
+  subpoints = drive_net,
+  disaggregation_threshold = 1000,
+  disaggregation_key = "Trips"
+)
+od_jittered |>
+  arrange(Trips) |>
+  ggplot() +
+  geom_sf(aes(colour = Trips), size = 1) +
+  scale_colour_viridis_c() +
+  geom_sf(data = drive_net_major, colour = "black") +
+  theme_void()
+```
+:::
+
+::: {.column width="70%"}
+![](https://github.com/Robinlovelace/spanishoddata/raw/main/man/figures/README-disaggregated-1.png)
+:::
+:::
+
+## How does spatial disaggregation (jittering) work?
+
+![](images/paste-5.png)
+
+Source: [@lovelace2022a]
+
+## Origin and end point randomisation + disaggregation
+
+![](images/paste-6.png)
+
+Source: [@lovelace2022a]
+
+## Cross-language collaboration
+
+![](images/paste-7.png)
+
+Source: <https://github.com/dabreegster/odjitter>
+
+## From open source to open access
+
+<!-- ![](images/paste-9.png) -->
+
+::: columns
+::: {.column width="40%"}
+"In essence ‘open access’ goes beyond ‘open source’ in that users are not only given the option of viewing (potentially indecipherable) source code, but are encouraged to do so, with measures taken in the software itself, and the community that builds it, to make it more user-friendly.""
+
+Source: [@lovelace2020]
+:::
+
+::: {.column width="60%"}
+![](images/paste-10.png)
+:::
+:::
+
+## From methods/software development to impact
+
+![](images/paste-8.png)
+
+Source: screenshot from development version of open source and open access Network Planning Tools for Scotland: [https://nptscot.github.io/#/rnet/#9.29/55.9882/-3.4379](https://nptscot.github.io/#/rnet/#9.29/55.9882/-3.4379)
+
+## Rapid feedback loops and interactivity
+
+![Illustration of od2net client-side network generator (source: od2net.org)](images/od2net.gif)
+
+## Enabling participation
+
+![](images/atip-poly.gif)
+
+Source: [acteng.github.io](https://acteng.github.io/atip/pipeline/scheme.html?authority=LAD_Leeds&schema=pipeline&style=streets#13.6/53.82231/-1.51541).
+Credit: Dustin Carlino (Alan Turing Institute and Active Travel England) and colleagues in ATE.
+
+# Future-proof transport planning {background-image="images/paste-35.png" background-opacity="0.5"}
+
+<!-- ![](images/paste-35.png) -->
+
+Source: [situational-awareness.ai](https://situational-awareness.ai/wp-content/uploads/2024/06/situationalawareness.pdf)
+
+## Drivers of demand for transport planning
+
+transport planning software was originally designed in the late 1950s and onwards to plan for
+
+> increased use of cars \[for personal travel\], and trucks for deliveries and goods movement @boyce2015
+
+Thankfully that is no longer a priority:
+
+> Policy drivers have changed dramatically since then: climate change mitigation, air quality improvement and public health are prioritised in the emergent ‘sustainable mobility paradigm’ @lovelace2021
+
+How could/should/will demand shift in the future?
+
+## Stages of open and reproducible science
+
+::: {.columns}
+::: {.column width="30%"}
+
+1.  Open access to the publications
+
+2.  Open access to sample (synthetic if sensitive) data
+
+3.  Open access to the code
+
+4.  Fully reproducible paper published with documentation
+
+5.  Project deployed in tool for non-specialist use
+
+
+:::
+::: {.column width="70%"}
+
+![](images/paste-12.png)
+
+:::
+:::
+
+## Future-proofing workflows
+
+### Avoid stranded assets (tech debt)
+
+![](images/paste-11.png)
+
+Source: @semieniuk2022
+
+## Conclusions
+
+-   Reproducible research is a key part of future-proofing transport planning, for your work, and for the discipline as a whole
+
+-   Open source software and open access tools are key to this, especially if you want to have humans in the loop
+
+-   AI is not a panacea, and has its own environmental costs
+
+-   In this context, there are some key desirable features of future-proof transport models and associated software and tools:
+
+    -   Open source
+    -   Open access
+    -   Reproducible
+    -   Human-in-the-loop
+    -   Easily adaptable to new data sources, methods, and demands
+
+## References
+
+::: {#refs}
+:::
+
+## Appendix: What if the machines *do* take over? {#sec-appendix}
+
+-   Would you want the AIs to be trained on your work?
+    -   Initial thought: no way, that's my data!
+    -   Second thought: if the AIs are going to take over, they might as well be well-informed, by good information and good intentions!
+-   Would you want to be able to understand how the AIs work?
+
+## AI takeover?
+
+<!-- <iframe src="https://ourworldindata.org/grapher/test-scores-ai-capabilities-relative-human-performance?country=Handwriting+recognition~Speech+recognition~Image+recognition~Reading+comprehension~Language+understanding~Predictive+reasoning~Code+generation~Complex+reasoning~General+knowledge+tests~Nuanced+language+interpretation~Math+problem-solving~Reading+comprehension+with+unanswerable+questions&tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe> -->
+
+![](images/paste-32.png)
+
+## Where are we headed with AI?
+
+![](images/paste-33.png)
+
+Source: <https://situational-awareness.ai>
+
+## The limits of AI
+
+![](images/paste-21.png)
+
+Nezhurina (N.D.)
+
+<!-- [@nezhurina] -->
+
+## Environmental costs of 'AI'
+
+::: columns
+::: {.column width="55%"}
+![](images/paste-29.png)
+
+![](images/paste-31.png)
+:::
+
+::: {.column width="45%"}
+IT sector was already poised to become a decarbonisation bottleneck
+
+![](images/paste-30.png)
+:::
+:::
+
+Source: [theregister.com](https://www.theregister.com/2024/05/16/microsoft_co2_emissions/) and Gupta et al. (2021) <!-- @gupta2021 -->
+
+## Factoring-in build-out of AI data centres
+
+![](images/paste-34.png)
