@@ -8,7 +8,7 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.41">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Your name">
   <meta name="dcterms.date" content="2024-09-14">
@@ -440,7 +440,19 @@ Your name <a href="https://orcid.org/0000-0001-5679-6536" class="quarto-title-au
 <h2>Setting-up <code>gh-pages</code> branch</h2>
 <p>You can do this with a single quarto command:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">quarto</span> publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Source: <a href="https://github.com/Robinlovelace/reproducible-slides-repo-template/actions/runs/10860601182/job/30141397336#step:4:34">Error message from GitHub Actions</a> when trying to publish slides to GitHub Pages:</p>
+<p>Which leads to the following text and eventually auto-opens the deployed webiste!</p>
+
+<img data-src="images/paste-4.png" class="r-stretch"></section>
+<section id="the-website" class="slide level2">
+<h2>The website</h2>
+<p>The previous command creates a <code>gh-pages</code> branch with the slides in the <code>docs</code> folder. This is then automatically deployed to GitHub Pages, and the website is opened in your browser when ready:</p>
+
+<img data-src="images/paste-5.png" class="r-stretch"><p>How awesome is that?</p>
+<h3 id="section">🤯🤯🤯</h3>
+</section>
+<section id="debugging" class="slide level2">
+<h2>Debugging</h2>
+<p>Source of <code>quarto publish gh-pages</code> hint: <a href="https://github.com/Robinlovelace/reproducible-slides-repo-template/actions/runs/10860601182/job/30141397336#step:4:34">Error message from GitHub Actions</a> when trying to publish slides to GitHub Pages:</p>
 <pre><code>ERROR: Unable to publish to GitHub Pages (the remote origin does not have a branch named "gh-pages". Use first `quarto publish gh-pages` locally to initialize the remote repository for publishing.)</code></pre>
 
 <img data-src="images/paste-3.png" class="r-stretch"></section></section>

@@ -4,7 +4,21 @@
     "href": "slides.html#setting-up-gh-pages-branch",
     "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
     "section": "Setting-up gh-pages branch",
-    "text": "Setting-up gh-pages branch\nYou can do this with a single quarto command:\nquarto publish gh-pages\nSource: Error message from GitHub Actions when trying to publish slides to GitHub Pages:\nERROR: Unable to publish to GitHub Pages (the remote origin does not have a branch named \"gh-pages\". Use first `quarto publish gh-pages` locally to initialize the remote repository for publishing.)"
+    "text": "Setting-up gh-pages branch\nYou can do this with a single quarto command:\nquarto publish gh-pages\nWhich leads to the following text and eventually auto-opens the deployed webiste!"
+  },
+  {
+    "objectID": "slides.html#the-website",
+    "href": "slides.html#the-website",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "The website",
+    "text": "The website\nThe previous command creates a gh-pages branch with the slides in the docs folder. This is then automatically deployed to GitHub Pages, and the website is opened in your browser when ready:\n\nHow awesome is that?\n🤯🤯🤯"
+  },
+  {
+    "objectID": "slides.html#debugging",
+    "href": "slides.html#debugging",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "Debugging",
+    "text": "Debugging\nSource of quarto publish gh-pages hint: Error message from GitHub Actions when trying to publish slides to GitHub Pages:\nERROR: Unable to publish to GitHub Pages (the remote origin does not have a branch named \"gh-pages\". Use first `quarto publish gh-pages` locally to initialize the remote repository for publishing.)"
   },
   {
     "objectID": "slides.html#with-the-quarto-extension",
