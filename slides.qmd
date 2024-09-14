@@ -16,10 +16,6 @@ date: last-modified
 bibliography: references.bib
 ---
 
-```{r}
-#| include: false
-library(tibble)
-```
 
 # Adding citations {background-color="#40666e"}
 
@@ -41,3 +37,10 @@ Creates citations like this: [@peng2011]
 @baumer_markdown_2014
 
 Alt+Shift+Z
+
+# Code chunks
+
+```r
+#| include: false
+library(tibble)
+```
