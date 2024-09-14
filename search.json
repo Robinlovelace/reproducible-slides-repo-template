@@ -1,5 +1,26 @@
 [
   {
+    "objectID": "slides.html#why-make-a-presentation-with-quarto-and-continuous-deployment",
+    "href": "slides.html#why-make-a-presentation-with-quarto-and-continuous-deployment",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "Why make a presentation with Quarto and continuous deployment?",
+    "text": "Why make a presentation with Quarto and continuous deployment?\n\nAllows you to test ideas in a standalone environment\nSharing materials with collaborators and the audience\nContinuous deployment automates the process of updating the slides and ensures reproducibility"
+  },
+  {
+    "objectID": "slides.html#how-to-get-started",
+    "href": "slides.html#how-to-get-started",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "How to get started?",
+    "text": "How to get started?\n\nCheck out the Quarto documentation\n\nEspecially the Publishing section\n\nYou can use this repository as a template for your own slides, go to https://github.com/Robinlovelace/reproducible-slides-repo-template and clone it\nNote: the approach here is to publish the slides as part of a Quarto website project so it can be used for other purposes too, e.g. if you want to write a paper building on the slides"
+  },
+  {
+    "objectID": "slides.html#extensions",
+    "href": "slides.html#extensions",
+    "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
+    "section": "Extensions",
+    "text": "Extensions\nAdd extensions with the following code (which adds the clean-revealjs extension, for example, which has a detailed demo hosted at github.com/grantmcdermott/quarto-revealjs-clean-demo):\nquarto install extension grantmcdermott/quarto-revealjs-clean\nThen replace:\nformat: \n  revealjs: default\nwith:\nformat: \n  clean-revealjs:\n    self-contained: true\nIn the YAML header of your .qmd file."
+  },
+  {
     "objectID": "slides.html#setting-up-gh-pages-branch",
     "href": "slides.html#setting-up-gh-pages-branch",
     "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
@@ -32,7 +53,7 @@
     "href": "slides.html#with-citation-picker-for-zotero-extension",
     "title": "Reproducible slides with Quarto and continuous deployment via GitHub actions",
     "section": "With “Citation Picker for Zotero” extension",
-    "text": "With “Citation Picker for Zotero” extension\n\nIssue with this approach: doesn’t generate the .bib file\n\n\n(baumer_markdown_2014?)\nAlt+Shift+Z"
+    "text": "With “Citation Picker for Zotero” extension\n\nIssue with this approach: doesn’t generate the .bib file\n\n\nAlt+Shift+Z"
   },
   {
     "objectID": "paper.html",

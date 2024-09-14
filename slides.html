@@ -432,14 +432,51 @@ Your name <a href="https://orcid.org/0000-0001-5679-6536" class="quarto-title-au
   <p class="date">2024-09-14</p>
 </section>
 <section>
-<section id="publishing-slides" class="title-slide slide level1 center">
-<h1>Publishing slides</h1>
+<section id="introduction" class="title-slide slide level1 center">
+<h1>Introduction</h1>
+
+</section>
+<section id="why-make-a-presentation-with-quarto-and-continuous-deployment" class="slide level2">
+<h2>Why make a presentation with Quarto and continuous deployment?</h2>
+<ul>
+<li>Allows you to test ideas in a standalone environment</li>
+<li>Sharing materials with collaborators and the audience</li>
+<li>Continuous deployment automates the process of updating the slides and ensures reproducibility</li>
+</ul>
+</section>
+<section id="how-to-get-started" class="slide level2">
+<h2>How to get started?</h2>
+<ul>
+<li>Check out the <a href="https://quarto.org/">Quarto documentation</a>
+<ul>
+<li>Especially the <a href="https://quarto.org/docs/publishing/">Publishing</a> section</li>
+</ul></li>
+<li>You can use this repository as a template for your own slides, go to https://github.com/Robinlovelace/reproducible-slides-repo-template and clone it</li>
+<li>Note: the approach here is to publish the slides as part of a Quarto website project so it can be used for other purposes too, e.g.&nbsp;if you want to write a paper building on the slides</li>
+</ul>
+</section>
+<section id="extensions" class="slide level2">
+<h2>Extensions</h2>
+<p>Add extensions with the following code (which adds the <a href="https://github.com/grantmcdermott/quarto-revealjs-clean"><code>clean-revealjs</code></a> extension, for example, which has a detailed demo hosted at <a href="https://github.com/grantmcdermott/quarto-revealjs-clean-demo/blob/main/template.qmd">github.com/grantmcdermott/quarto-revealjs-clean-demo</a>):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">quarto</span> install extension grantmcdermott/quarto-revealjs-clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then replace:</p>
+<pre><code>format: 
+  revealjs: default</code></pre>
+<p>with:</p>
+<pre><code>format: 
+  clean-revealjs:
+    self-contained: true</code></pre>
+<p>In the YAML header of your <code>.qmd</code> file.</p>
+</section></section>
+<section>
+<section id="publishing-slides-and-more" class="title-slide slide level1 center">
+<h1>Publishing slides (and more)</h1>
 
 </section>
 <section id="setting-up-gh-pages-branch" class="slide level2">
 <h2>Setting-up <code>gh-pages</code> branch</h2>
 <p>You can do this with a single quarto command:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">quarto</span> publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">quarto</span> publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Which leads to the following text and eventually auto-opens the deployed webiste!</p>
 
 <img data-src="images/paste-4.png" class="r-stretch"></section>
@@ -468,7 +505,7 @@ Your name <a href="https://orcid.org/0000-0001-5679-6536" class="quarto-title-au
 <li>Then it’s Ctrl+Shift+F8</li>
 </ul>
 
-<img data-src="images/paste-2.png" class="r-stretch"><p>Creates citations like this: <span class="citation" data-cites="peng2011">(<a href="#/code-chunks" role="doc-biblioref" onclick="">Peng 2011</a>)</span></p>
+<img data-src="images/paste-2.png" class="r-stretch"><p>Creates citations like this: <span class="citation" data-cites="peng2011">(<a href="#/references" role="doc-biblioref" onclick="">Peng 2011</a>)</span></p>
 </section>
 <section id="with-citation-picker-for-zotero-extension" class="slide level2">
 <h2>With “Citation Picker for Zotero” extension</h2>
@@ -476,13 +513,10 @@ Your name <a href="https://orcid.org/0000-0001-5679-6536" class="quarto-title-au
 <li>Issue with this approach: doesn’t generate the .bib file</li>
 </ul>
 
-<img data-src="images/paste-1.png" class="r-stretch"><p><span class="citation" data-cites="baumer_markdown_2014">(<a href="#/code-chunks" role="doc-biblioref" onclick=""><strong>baumer_markdown_2014?</strong></a>)</span></p>
-<p>Alt+Shift+Z</p>
+<img data-src="images/paste-1.png" class="r-stretch"><p>Alt+Shift+Z</p>
 </section></section>
-<section id="code-chunks" class="title-slide slide level1 smaller scrollable">
-<h1>Code chunks</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co">#| include: false</span></span>
-<span id="cb3-2"><a></a><span class="fu">library</span>(tibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="references" class="title-slide slide level1 smaller scrollable">
+<h1>References</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
