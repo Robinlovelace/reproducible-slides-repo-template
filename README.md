@@ -13,3 +13,7 @@ quarto publish gh-pages
 ```
 
 - Use [GitHub actions](.github/workflows/) to automatically deploy your slides to GitHub pages
+
+## Reproducible slide projects build with this
+
+- Deploying cross-language in high impact projects, auto-updated and deployed with every commit, with R and Python code running and generating results shown in the slides: https://github.com/Robinlovelace/cross_language_projects
