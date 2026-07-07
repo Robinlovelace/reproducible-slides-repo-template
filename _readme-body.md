@@ -5,7 +5,7 @@
 ```sh
 gh repo create my-slides --template robinlovelace/reproducible-project-template
 cd my-slides
-# Enable Pages: Settings → Pages → Source: GitHub Actions
+# Enable Pages: Settings → Pages → Source: Deploy from a branch → Branch: gh-pages, / (root)
 # Edit slides.qmd, then push
 git push
 ```
