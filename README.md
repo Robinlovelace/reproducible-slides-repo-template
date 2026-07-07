@@ -13,7 +13,7 @@ A template for reproducible slides with Quarto, GitHub Actions, and GitHub Pages
 ```sh
 gh repo create my-slides --template robinlovelace/reproducible-project-template
 cd my-slides
-# Enable Pages: Settings → Pages → Source: GitHub Actions
+# Enable Pages: Settings → Pages → Source: Deploy from a branch → Branch: gh-pages, / (root)
 # Edit slides.qmd, then push
 git push
 ```
@@ -25,7 +25,7 @@ Your slides are live in ~30 seconds.
 | Feature | Description |
 |---------|-------------|
 | **clean-revealjs theme** | Bundled in `_extensions/`, zero install needed |
-| **Auto-deploy** | `actions/deploy-pages@v4` on every push to main |
+| **Auto-deploy** | `peaceiris/actions-gh-pages@v4` on every push to main, publishes to `gh-pages` branch |
 | **Auto-detect** | Uses `quarto inspect` to detect R/Python needs; only installs what's required |
 | **PR previews** | Deploy preview versions for review before merging |
 | **Quarto freeze** | Cache computation results locally; CI only re-renders markdown |
@@ -38,7 +38,7 @@ Your slides are live in ~30 seconds.
 
 | Workflow | Trigger | What it does |
 |----------|---------|--------------|
-| `publish.yml` | Push to main | Render site → deploy to GitHub Pages |
+| `publish.yml` | Push to main | Render site → deploy to GitHub Pages (`gh-pages` branch) |
 | `release-standalone.yml` | Push to main | Build self-contained HTML + PDF → create dated release |
 | `pr-preview.yml` | PR to main | Build preview → deploy to temporary URL |
 
