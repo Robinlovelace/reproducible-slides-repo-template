@@ -2,13 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-07-07">
 
-<title>Reproducible slides with Quarto and continuous deployment via GitHub actions</title>
+<title>Reproducible project template</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -19,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -36,10 +75,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-eed0b44c1a2e0d1172a982d999254159.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fe6159536a2b14f65318ddd618b6d983.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Reproducible slides with Quarto and continuous deployment via GitHub actions</h1>
+<h1 class="title">Reproducible project template</h1>
 </div>
 
 
@@ -116,6 +155,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 7, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -125,11 +170,130 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The materials here support a talk at the <a href="https://spatial-data-science.github.io/2024/">Spatial Data Science across Languages (SDSL)</a> conference 2024.</p>
-<p>See the <a href="slides">slides here</a> and in the dropdown menu above.</p>
-<p>See the source code at <a href="https://github.com/Robinlovelace/reproducible-project-template">github.com/robinlovelace</a>.</p>
+<p>A flexible template for reproducible slides with Quarto, GitHub Actions, and GitHub Pages.</p>
+<ul>
+<li>Online version: <a href="https://robinlovelace.github.io/reproducible-project-template">robinlovelace.github.io/reproducible-project-template</a></li>
+<li>Source code: <a href="https://github.com/Robinlovelace/reproducible-project-template">github.com/Robinlovelace/reproducible-project-template</a></li>
+</ul>
+<p><img src="https://img.shields.io/github/actions/workflow/status/Robinlovelace/reproducible-project-template/publish.yml?branch=main&amp;label=deploy" class="img-fluid" alt="Deploy status"> Last updated: July 7, 2026</p>
+<section id="quick-start" class="level2">
+<h2 class="anchored" data-anchor-id="quick-start">Quick start</h2>
+<p><em>(Note: The commands below use the <a href="https://cli.github.com/">GitHub CLI (<code>gh</code>)</a>. If you don’t have it installed, you can <a href="https://cli.github.com/">follow the installation instructions</a> or create the repository manually on GitHub).</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create my-slides <span class="at">--template</span> robinlovelace/reproducible-project-template</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-slides</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable Pages: Settings → Pages → Source: Deploy from a branch → Branch: gh-pages, / (root)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Edit slides.qmd, then push</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Your slides are live in ~30 seconds.</p>
+</section>
+<section id="features" class="level2">
+<h2 class="anchored" data-anchor-id="features">Features</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>clean-revealjs theme</strong></td>
+<td>Bundled in <code>_extensions/</code>, zero install needed</td>
+</tr>
+<tr class="even">
+<td><strong>Auto-deploy</strong></td>
+<td><code>actions/deploy-pages@v4</code> on every push to main</td>
+</tr>
+<tr class="odd">
+<td><strong>Auto-detect</strong></td>
+<td>Uses <code>quarto inspect</code> to detect R/Python needs; only installs what’s required</td>
+</tr>
+<tr class="even">
+<td><strong>PR previews</strong></td>
+<td>Deploy preview versions for review before merging</td>
+</tr>
+<tr class="odd">
+<td><strong>Quarto freeze</strong></td>
+<td>Cache computation results locally; CI only re-renders markdown</td>
+</tr>
+<tr class="even">
+<td><strong>Self-contained HTML</strong></td>
+<td>Offline-capable HTML with all images, CSS, and JS embedded</td>
+</tr>
+<tr class="odd">
+<td><strong>PDF export</strong></td>
+<td>Auto-generated via DeckTape on every release</td>
+</tr>
+<tr class="even">
+<td><strong>Date-based releases</strong></td>
+<td>Automatic versioned releases on every push</td>
+</tr>
+<tr class="odd">
+<td><strong>Citation support</strong></td>
+<td><code>references.bib</code> ready for bibliographies</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="workflows" class="level2">
+<h2 class="anchored" data-anchor-id="workflows">Workflows</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 27%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Workflow</th>
+<th>Trigger</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>publish.yml</code></td>
+<td>Push to main</td>
+<td>Render site → deploy to GitHub Pages</td>
+</tr>
+<tr class="even">
+<td><code>release-standalone.yml</code></td>
+<td>Push to main</td>
+<td>Build self-contained HTML + PDF → create dated release</td>
+</tr>
+<tr class="odd">
+<td><code>pr-preview.yml</code></td>
+<td>PR to main</td>
+<td>Build preview → deploy to temporary URL</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="structure" class="level2">
+<h2 class="anchored" data-anchor-id="structure">Structure</h2>
+<pre><code>├── slides.qmd                  # Main slide deck
+├── index.qmd                   # Landing page
+├── _quarto.yml                 # Project config (output-dir, freeze, navbar)
+├── references.bib              # Bibliography
+├── _extensions/clean/          # clean-revealjs theme (bundled)
+└── .github/workflows/
+    ├── publish.yml             # Render + deploy to Pages
+    ├── release-standalone.yml  # Self-contained HTML + PDF release
+    └── pr-preview.yml          # PR preview deployments</code></pre>
+</section>
+<section id="built-with-this-template" class="level2">
+<h2 class="anchored" data-anchor-id="built-with-this-template">Built with this template</h2>
+<ul>
+<li><a href="https://robinlovelace.net/aum26/">AUM 2026 slides</a> — Modelling multi-model traffic, casualties and risk</li>
+<li><a href="https://robinlovelace.net/itfworkshop/">ITF Workshop slides</a> — Building communities of transport practitioners</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -183,13 +347,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -204,7 +369,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/Robinlovelace\.github\.io\/reproducible-project-template\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
